@@ -5,3 +5,7 @@ body {
 .hero {
   padding: 40px 0;
 }
+
+p{
+  color: yellow;
+}
