@@ -1,66 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device=width, initial-scale=1.0">
-        <title>Lamborghini</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    <body class="bg-black text-white">
-       <nav class="navbar navbar-expand-sm navbar-dark bg-black sticky-top">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Lamborghini</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                        <div class="collapse navbar-collapse" id="mynavbar">
-                          <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                              <a class="nav-link" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
-                                  <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="NewModels.html">New Models</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="OldModels.html">Old Models</a>
-                                    </li>
-                                  </ul>
-                            </li>
-                             
-                              <li class="nav-item">
-                              <a class="nav-link" href="Heritage.html">Heritage</a>
-                            </li>
-                               
-                              <li class="nav-item">
-                              <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                          </ul>
-                         
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="text" placeholder="Search">
-                            <button class="btn btn-primary" type="button">Search</button>
-                        </form>
-                        </div>
-              </div>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lamborghini – Current Models</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+    }
+
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 30px;
+      border-bottom: 1px solid #333;
+      background-color: #000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #d4a017;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #d4a017; }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 5px 10px;
+      background: #111;
+      gap: 6px;
+    }
+
+    .search-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ccc;
+      font-size: 13px;
+      width: 160px;
+    }
+
+    .search-box span { color: #888; font-size: 14px; }
+
     
-                        <div class="container-fluid mt-3">
-                          <h1>New Models</h1>
-                              <p>Discover lamborghini</p>
-                                <div class="row">
-                                     <div class="col-md-3"> <img src="huracan.jpg" class="img-fluid" alt=lambo"></div>
-                                      <div class="col-md-3"> <img src="revuelto.jpg" class="img-fluid" alt=lambo"></div>
-                                         <div class="col-md-3"> <img src="temerario.jpg" class="img-fluid" alt=lambo"></div>
-                                           <div class="col-md-3"> <img src="urus.jpg" class="img-fluid" alt=lambo"></div>
-                                </div>
-                        </div>
-         <footer style="background-color:black;">
-		<p>&copy; 2026 Lamborghini</p>
-	</footer>
-        </body>
-      </html>                 
+    .hero {
+      text-align: center;
+      padding: 50px 30px 30px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span { color: #d4a017; }
+
+    .hero p {
+      max-width: 860px;
+      margin: 0 auto;
+      color: #ccc;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      padding: 30px 30px 60px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .model-card {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .model-card:hover {
+      transform: translateY(-4px);
+      border-color: #d4a017;
+    }
+
+    .model-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      background: #222;
+    }
+
+
+    .img-huracan  { background: linear-gradient(135deg, #1a1a1a 60%, #2d2d2d); }
+    .img-temerario{ background: linear-gradient(135deg, #1a1a1a 60%, #333); }
+    .img-urus     { background: linear-gradient(135deg, #1e1e1e 60%, #2a2a2a); }
+    .img-revuelto { background: linear-gradient(135deg, #1a1a1a 60%, #3a2000); }
+
+    .model-label {
+      background: #d4a017;
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+    }
+
+    .model-info { padding: 14px 14px 18px; }
+
+    .model-info h2 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .model-info p {
+      color: #bbb;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .model-price {
+      display: inline-block;
+      margin-top: 12px;
+      color: #d4a017;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid #222;
+      padding: 22px 30px;
+      text-align: center;
+      color: #555;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    footer span { color: #d4a017; }
+
+    
+    @media (max-width: 900px) {
+      .models-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 540px) {
+      .models-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <nav>
+    <div class="nav-left">
+      <span class="nav-brand">Lamborghini</span>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Models</a></li>
+        <li><a href="#">Heritage</a></li>
+        <li><a href="#">Contact / About</a></li>
+      </ul>
+    </div>
+    <div class="search-box">
+      <span>&#128269;</span>
+      <input type="text" placeholder="Search" />
+    </div>
+  </nav>
+
+  
+  <section class="hero">
+    <h1>Current <span>Models</span></h1>
+    <p>
+      Here you will get to witness all the current models in all their greatness and glory.
+      With the current models get to see the advanced technology and the luxurious
+      advancements. Whether you are looking for raw power or comfort, it is all available
+      throughout every model.
+    </p>
+  </section>
+
+  <
+	  
+  <section class="models-grid">
+
+    
+    <div class="model-card">
+      <div class="img-huracan" style="height:190px; display:flex; align-items:center;
+           justify-content:center; color:#555; font-size:13px; letter-spacing:1px;">
+        [ Huracán ]
+      </div>
+      <div class="model-label">V10 · Naturally Aspirated</div>
+      <div class="model-info">
+        <h2>Huracán</h2>
+        <p>
+          Designed for raw power and to turn heads of every spectator. Packed under the
+          hood is a 5.2-litre naturally aspirated V10 engine giving a whopping 572–640
+          horsepower. This beast goes 0–100 km/h in 2.9 seconds with a top speed of
+          320–325 km/h. Features dynamic steering, magnetorheological suspension, and
+          an adaptive network intelligent management system.
+        </p>
+        <span class="model-price">From ₱4,300,000 – ₱8,300,000</span>
+      </div>
+    </div>
+
+    
+    <div class="model-card">
+      <div class="img-temerario" style="height:190px; display:flex; align-items:center;
+           justify-content:center; color:#555; font-size:13px; letter-spacing:1px;">
+        [ Temerario ]
+      </div>
+      <div class="model-label">V8 Hybrid · Mid-Mounted</div>
+      <div class="model-info">
+        <h2>Temerario</h2>
+        <p>
+          Redesigned with a new look and the same powerful performance. Rocking a
+          mid-mounted V8 engine with forced induction via twin turbos, revving up to
+          10,000 RPM — a first for a production engine. A hybrid, with three electric
+          motors contributing to 907 combined horsepower.
+        </p>
+        <span class="model-price">Approximately ₱5,900,000</span>
+      </div>
+    </div>
+
+    <
+    <div class="model-card">
+      <div class="img-urus" style="height:190px; display:flex; align-items:center;
+           justify-content:center; color:#555; font-size:13px; letter-spacing:1px;">
+        [ Urus ]
+      </div>
+      <div class="model-label">SUV · Twin Turbo V8</div>
+      <div class="model-info">
+        <h2>Urus</h2>
+        <p>
+          The SUV face of Lamborghini and a very popular option in the current market.
+          Features a 4.0-litre twin turbo V8 pushing up to 641 horsepower. Goes 0–100
+          in under 4 seconds. Also available in a hybrid model allowing power to wheels
+          through electricity.
+        </p>
+        <span class="model-price">From ₱3,300,000</span>
+      </div>
+    </div>
+
+    
+    <div class="model-card">
+      <div class="img-revuelto" style="height:190px; display:flex; align-items:center;
+           justify-content:center; color:#555; font-size:13px; letter-spacing:1px;">
+        [ Revuelto ]
+      </div>
+      <div class="model-label">V12 Hybrid · 1,001 HP</div>
+      <div class="model-info">
+        <h2>Revuelto</h2>
+        <p>
+          The most prestigious current model of the Lamborghini brand. Packs a 6.5-litre
+          V12 engine with 9,300 RPM pushing 814 horsepower, combined with three electric
+          motors — one per front wheel and one in the 8-speed dual-clutch transaxle —
+          adding another 147 HP for a total of 1,001 HP.
+        </p>
+        <span class="model-price">₱107,200,000</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <footer>
+    &copy; 2025 <span>Lamborghini</span>. All rights reserved.
+  </footer>
+
+</body>
+</html>
