@@ -4,200 +4,226 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lamborghini – Current Models</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      font-size: 14px;
+    :root {
+      --gold: #c9a84c;
+      --gold-dim: #a07830;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #222;
+      --text: #e8e0d0;
+      --muted: #888;
     }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+   
     nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 14px 30px;
-      border-bottom: 1px solid #333;
-      background-color: #000;
+      gap: 0;
+      padding: 0 2rem;
+      border-bottom: 1px solid var(--border);
+      background: #000;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-    }
-
     .nav-brand {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #d4a017;
-      text-transform: uppercase;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      padding: 1.1rem 1.5rem 1.1rem 0;
+      border-right: 1px solid var(--border);
+      margin-right: 1rem;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
       list-style: none;
+      flex: 1;
     }
 
-    .nav-links a {
-      color: #fff;
+    .nav-links li a {
+      display: block;
+      padding: 1.2rem 1.6rem;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
       text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 1px;
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: #d4a017; }
+    .nav-links li a:hover { color: var(--gold); }
 
-    .search-box {
+    .nav-search {
       display: flex;
       align-items: center;
-      border: 1px solid #555;
-      border-radius: 4px;
-      padding: 5px 10px;
-      background: #111;
-      gap: 6px;
+      gap: 0.5rem;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
     }
 
-    .search-box input {
-      background: transparent;
+    .nav-search input {
+      background: none;
       border: none;
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
       outline: none;
-      color: #ccc;
-      font-size: 13px;
-      width: 160px;
+      width: 140px;
     }
 
-    .search-box span { color: #888; font-size: 14px; }
+    .nav-search input::placeholder { color: var(--muted); }
+    .nav-search svg { color: var(--muted); flex-shrink: 0; }
 
     
-    .hero {
+    .page-header {
       text-align: center;
-      padding: 50px 30px 30px;
+      padding: 4rem 2rem 2rem;
+      position: relative;
     }
 
-    .hero h1 {
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .page-header::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 1.5rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.2em;
       color: #fff;
-      margin-bottom: 16px;
     }
 
-    .hero h1 span { color: #d4a017; }
-
-    .hero p {
-      max-width: 860px;
-      margin: 0 auto;
-      color: #ccc;
-      line-height: 1.7;
-      font-size: 14px;
+    .page-header p {
+      max-width: 780px;
+      margin: 1.2rem auto 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
     }
 
-    
-    .models-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      padding: 30px 30px 60px;
+   
+    .models-section {
+      padding: 3rem 2rem 5rem;
       max-width: 1300px;
       margin: 0 auto;
     }
 
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
     .model-card {
-      background: #111;
-      border: 1px solid #2a2a2a;
-      border-radius: 6px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s;
+      transition: transform 0.3s ease;
+      position: relative;
     }
 
-    .model-card:hover {
-      transform: translateY(-4px);
-      border-color: #d4a017;
+    .model-card:hover { z-index: 2; transform: scale(1.015); }
+
+    .model-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid var(--gold);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
     }
 
-    .model-card img {
+    .model-card:hover::after { opacity: 1; }
+
+    .model-img-wrap {
       width: 100%;
-      height: 190px;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+
+    .model-img-wrap img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
-      background: #222;
+      filter: brightness(0.9) contrast(1.05);
+      transition: filter 0.4s, transform 0.5s;
     }
 
+    .model-card:hover .model-img-wrap img {
+      filter: brightness(1) contrast(1.1);
+      transform: scale(1.04);
+    }
 
-    .img-huracan  { background: linear-gradient(135deg, #1a1a1a 60%, #2d2d2d); }
-    .img-temerario{ background: linear-gradient(135deg, #1a1a1a 60%, #333); }
-    .img-urus     { background: linear-gradient(135deg, #1e1e1e 60%, #2a2a2a); }
-    .img-revuelto { background: linear-gradient(135deg, #1a1a1a 60%, #3a2000); }
+    .model-body {
+      padding: 1.4rem 1.2rem 1.6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
 
-    .model-label {
-      background: #d4a017;
-      color: #000;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
+    .model-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
       text-transform: uppercase;
-      padding: 4px 12px;
     }
 
-    .model-info { padding: 14px 14px 18px; }
-
-    .model-info h2 {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .model-info p {
-      color: #bbb;
-      font-size: 13px;
-      line-height: 1.65;
+    .model-desc {
+      font-size: 0.82rem;
+      color: #aaa;
+      line-height: 1.75;
+      flex: 1;
     }
 
     .model-price {
-      display: inline-block;
-      margin-top: 12px;
-      color: #d4a017;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.5px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: #fff;
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+      margin-top: auto;
     }
 
-
-    footer {
-      background: #0a0a0a;
-      border-top: 1px solid #222;
-      padding: 22px 30px;
-      text-align: center;
-      color: #555;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
-
-    footer span { color: #d4a017; }
-
-    
+   
     @media (max-width: 900px) {
       .models-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
-    @media (max-width: 540px) {
+    @media (max-width: 560px) {
       .models-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+      nav { flex-wrap: wrap; gap: 0.5rem; padding: 0.8rem 1rem; }
+      .nav-links { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -205,119 +231,105 @@
 
   
   <nav>
-    <div class="nav-left">
-      <span class="nav-brand">Lamborghini</span>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Models</a></li>
-        <li><a href="#">Heritage</a></li>
-        <li><a href="#">Contact / About</a></li>
-      </ul>
-    </div>
-    <div class="search-box">
-      <span>&#128269;</span>
+    <div class="nav-brand">Lamborghini</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Models</a></li>
+      <li><a href="heritage.html">Heritage</a></li>
+      <li><a href="contact.html">Contact / About</a></li>
+    </ul>
+    <div class="nav-search">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
       <input type="text" placeholder="Search" />
     </div>
   </nav>
 
-  
-  <section class="hero">
-    <h1>Current <span>Models</span></h1>
+
+  <header class="page-header">
+    <h1>Current Models</h1>
     <p>
       Here you will get to witness all the current models in all their greatness and glory.
-      With the current models get to see the advanced technology and the luxurious
-      advancements. Whether you are looking for raw power or comfort, it is all available
-      throughout every model.
+      With the current models get to see the advanced technology, the luxurious advancements.
+      Whether you are looking for raw power or comfort, it is all available throughout every model.
     </p>
+  </header>
+
+  
+  <section class="models-section">
+    <div class="models-grid">
+
+     
+      <div class="model-card">
+        <div class="model-img-wrap">
+          <img src="huracan.jpg" alt="huracan">
+        </div>
+        <div class="model-body">
+          <div class="model-name">Huracán</div>
+          <p class="model-desc">
+            The Huracán is designed for raw power and to turn heads of every spectator.
+            Packed under the hood is a 5.2-litre naturally aspirated V10 engine giving you a
+            whopping 572–640 horsepower. This beast goes 0–100 km/h in 2.9 seconds with a top
+            speed of 320–325 km/h. It also features dynamic steering, magnetorheological
+            suspension and an adaptive network intelligent management system.
+          </p>
+          <div class="model-price">From P4,300,000 – P8,300,000</div>
+        </div>
+      </div>
+
+     
+      <div class="model-card">
+        <div class="model-img-wrap">
+          <img src="temerario.jpg" alt="Lamborghini Temerario">
+        </div>
+        <div class="model-body">
+          <div class="model-name">Temerario</div>
+          <p class="model-desc">
+            Redesigned with a new look while retaining the same powerful performance. The
+            Temerario rocks a mid-mounted V8 engine with forced induction via twin turbos,
+            revving up to 10,000 RPM — a first for a production engine. Being a hybrid, three
+            electric motors contribute to a combined 907 horsepower.
+          </p>
+          <div class="model-price">Approx. P5,900,000</div>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <div class="model-img-wrap">
+          <img src="urus.jpg" alt="Lamborghini Urus" >
+        </div>
+        <div class="model-body">
+          <div class="model-name">Urus</div>
+          <p class="model-desc">
+            The Urus brings the SUV form factor to Lamborghini's DNA. A 4.0-litre twin-turbo
+            V8 engine pushes up to 641 horsepower, launching the SUV from 0–100 km/h in under
+            4 seconds. Also available in hybrid form, with electric motors driving the wheels
+            for added efficiency without sacrificing performance.
+          </p>
+          <div class="model-price">From P3,300,000</div>
+        </div>
+      </div>
+
+      
+      <div class="model-card">
+        <div class="model-img-wrap">
+          <img src="revuelto.jpg" alt="Lamborghini Revuelto">
+        </div>
+        <div class="model-body">
+          <div class="model-name">Revuelto</div>
+          <p class="model-desc">
+            The most prestigious current model in the Lamborghini lineup. A 6.5-litre V12
+            engine spins to 9,300 RPM, pushing a hefty 814 hp — combined with three electric
+            motors (one per front wheel, one in the 8-speed dual-clutch transaxle) for 147 HP
+            more, totalling 1,001 HP. Batteries charge via regenerative braking or plug-in.
+          </p>
+          <div class="model-price">P107,200,000</div>
+        </div>
+      </div>
+
+    </div>
   </section>
-
-  <
-	  
-  <section class="models-grid">
-
-    
-    <div class="model-card">
-      <img src="huracan.jpg" style="height:190px; display:flex; align-items:center;
-           justify-content:center; color:#555; font-size:13px; letter-spacing:1px;">
-        [ Huracán ]
-      </div>
-      <div class="model-label">V10 · Naturally Aspirated</div>
-      <div class="model-info">
-        <h2>Huracán</h2>
-        <p>
-          Designed for raw power and to turn heads of every spectator. Packed under the
-          hood is a 5.2-litre naturally aspirated V10 engine giving a whopping 572–640
-          horsepower. This beast goes 0–100 km/h in 2.9 seconds with a top speed of
-          320–325 km/h. Features dynamic steering, magnetorheological suspension, and
-          an adaptive network intelligent management system.
-        </p>
-        <span class="model-price">From ₱4,300,000 – ₱8,300,000</span>
-      </div>
-    </div>
-
-    
-    <div class="model-card">
-      <img src="temerario.jpg" style="height:190px; display:flex; align-items:center;
-           justify-content:center; color:#555; font-size:13px; letter-spacing:1px;">
-        [ Temerario ]
-      </div>
-      <div class="model-label">V8 Hybrid · Mid-Mounted</div>
-      <div class="model-info">
-        <h2>Temerario</h2>
-        <p>
-          Redesigned with a new look and the same powerful performance. Rocking a
-          mid-mounted V8 engine with forced induction via twin turbos, revving up to
-          10,000 RPM — a first for a production engine. A hybrid, with three electric
-          motors contributing to 907 combined horsepower.
-        </p>
-        <span class="model-price">Approximately ₱5,900,000</span>
-      </div>
-    </div>
-
-    <
-    <div class="model-card">
-      <img src="urus.jpg" style="height:190px; display:flex; align-items:center;
-           justify-content:center; color:#555; font-size:13px; letter-spacing:1px;">
-        [ Urus ]
-      </div>
-      <div class="model-label">SUV · Twin Turbo V8</div>
-      <div class="model-info">
-        <h2>Urus</h2>
-        <p>
-          The SUV face of Lamborghini and a very popular option in the current market.
-          Features a 4.0-litre twin turbo V8 pushing up to 641 horsepower. Goes 0–100
-          in under 4 seconds. Also available in a hybrid model allowing power to wheels
-          through electricity.
-        </p>
-        <span class="model-price">From ₱3,300,000</span>
-      </div>
-    </div>
-
-    
-    <div class="model-card">
-      <img src="revuelto.jpg" style="height:190px; display:flex; align-items:center;
-           justify-content:center; color:#555; font-size:13px; letter-spacing:1px;">
-        [ Revuelto ]
-      </div>
-      <div class="model-label">V12 Hybrid · 1,001 HP</div>
-      <div class="model-info">
-        <h2>Revuelto</h2>
-        <p>
-          The most prestigious current model of the Lamborghini brand. Packs a 6.5-litre
-          V12 engine with 9,300 RPM pushing 814 horsepower, combined with three electric
-          motors — one per front wheel and one in the 8-speed dual-clutch transaxle —
-          adding another 147 HP for a total of 1,001 HP.
-        </p>
-        <span class="model-price">₱107,200,000</span>
-      </div>
-    </div>
-
-  </section>
-
-
-  <footer>
-    &copy; 2025 <span>Lamborghini</span>. All rights reserved.
-  </footer>
 
 </body>
 </html>
