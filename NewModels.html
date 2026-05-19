@@ -78,6 +78,44 @@
       opacity: 0.7;
     }
 
+    .nav-links li {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #fff;
+      color: #000;
+      min-width: 160px;
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      z-index: 200;
+      overflow: hidden;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.65rem 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #111 !important;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f0f0f0;
+      color: #000 !important;
+    }
+
+    .nav-links li.open .dropdown-menu {
+      display: block;
+    }
+
     
     .nav-search {
       display: flex;
@@ -276,20 +314,16 @@
   <nav>
     <a class="nav-brand" href="#">Lamborghini</a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
-                                  <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="NewModels.html">New Models</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="OldModels.html">Old Models</a>
-                                    </li>
-                                  </ul>
-                            </li>
-      <li><a href="Heritage.html">Heritage</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#">Home</a></li>
+      <li id="models-dropdown-li">
+        <a href="#" id="models-toggle">Models <span class="caret">▾</span></a>
+        <div class="dropdown-menu">
+          <a href="#">New Models</a>
+          <a href="#">Old Models</a>
+        </div>
+      </li>
+      <li><a href="#">Heritage</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
     <div class="nav-search">
       <input type="text" placeholder="Search" />
@@ -314,8 +348,8 @@
       
       <div class="model-card">
         <div class="model-img-wrap">
-          <img src="huracan.jpg"
-               alt="Lamborghini Huracán">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Lamborghini_Huracan_EVO_-_Flickr_-_Alexandre_Prévot_%2816%29_%28cropped%29.jpg/1280px-Lamborghini_Huracan_EVO_-_Flickr_-_Alexandre_Prévot_%2816%29_%28cropped%29.jpg"
+               alt="Lamborghini Huracán" onerror="this.style.display='none'"/>
         </div>
         <div class="model-body">
           <div class="model-name">Huracán</div>
@@ -333,8 +367,8 @@
       
       <div class="model-card">
         <div class="model-img-wrap">
-          <img src="temerario.jpg"
-               alt="Lamborghini Temerario">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Lamborghini_Temerario_IAA_2024_1X7A2941.jpg/1280px-Lamborghini_Temerario_IAA_2024_1X7A2941.jpg"
+               alt="Lamborghini Temerario" onerror="this.style.display='none'"/>
         </div>
         <div class="model-body">
           <div class="model-name">Temerario</div>
@@ -351,8 +385,8 @@
       
       <div class="model-card">
         <div class="model-img-wrap">
-          <img src="urus.jpg"
-               alt="Lamborghini Urus">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lamborghini_Urus_IAA_2021_1X7A0114.jpg/1280px-Lamborghini_Urus_IAA_2021_1X7A0114.jpg"
+               alt="Lamborghini Urus" onerror="this.style.display='none'"/>
         </div>
         <div class="model-body">
           <div class="model-name">Urus</div>
@@ -369,8 +403,8 @@
       
       <div class="model-card">
         <div class="model-img-wrap">
-          <img src="revuelto.jpg"
-               alt="Lamborghini Revuelto">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/2023_Lamborghini_Revuelto_at_the_Paris_Motor_Show.jpg/1280px-2023_Lamborghini_Revuelto_at_the_Paris_Motor_Show.jpg"
+               alt="Lamborghini Revuelto" onerror="this.style.display='none'"/>
         </div>
         <div class="model-body">
           <div class="model-name">Revuelto</div>
@@ -389,6 +423,20 @@
   </section>
 
   <script>
+    const modelsLi = document.getElementById('models-dropdown-li');
+    const modelsToggle = document.getElementById('models-toggle');
+
+    modelsToggle.addEventListener('click', e => {
+      e.preventDefault();
+      modelsLi.classList.toggle('open');
+    });
+
+    document.addEventListener('click', e => {
+      if (!modelsLi.contains(e.target)) {
+        modelsLi.classList.remove('open');
+      }
+    });
+
     const searchInput = document.querySelector('.nav-search input');
     const searchBtn   = document.querySelector('.nav-search button');
     const cards       = document.querySelectorAll('.model-card');
