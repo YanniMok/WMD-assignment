@@ -26,72 +26,95 @@
       line-height: 1.6;
     }
 
-   
+    
     nav {
       display: flex;
       align-items: center;
-      gap: 0;
-      padding: 0 2rem;
-      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
       background: #000;
       position: sticky;
       top: 0;
       z-index: 100;
+      height: 52px;
     }
 
     .nav-brand {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      padding: 1.1rem 1.5rem 1.1rem 0;
-      border-right: 1px solid var(--border);
-      margin-right: 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      text-decoration: none;
+      margin-right: 1.5rem;
       white-space: nowrap;
+      letter-spacing: 0.02em;
     }
 
     .nav-links {
       display: flex;
       list-style: none;
       flex: 1;
+      align-items: center;
+      gap: 0.1rem;
     }
 
     .nav-links li a {
-      display: block;
-      padding: 1.2rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.75rem;
       font-family: 'Barlow', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text);
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #ccc;
       text-decoration: none;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
-    .nav-links li a:hover { color: var(--gold); }
+    .nav-links li a:hover { color: #fff; }
 
+    .nav-links li a .caret {
+      font-size: 0.65rem;
+      opacity: 0.7;
+    }
+
+    
     .nav-search {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.9rem;
-      border-radius: 2px;
+      gap: 0;
+      margin-left: auto;
     }
 
     .nav-search input {
-      background: none;
+      background: #fff;
       border: none;
-      color: var(--text);
+      color: #333;
       font-family: 'Barlow', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       outline: none;
-      width: 140px;
+      width: 200px;
+      padding: 0.42rem 0.9rem;
+      border-radius: 4px 0 0 4px;
     }
 
-    .nav-search input::placeholder { color: var(--muted); }
-    .nav-search svg { color: var(--muted); flex-shrink: 0; }
+    .nav-search input::placeholder { color: #aaa; }
+
+    .nav-search button {
+      background: #0d6efd;
+      border: none;
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.42rem 1rem;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-search button:hover { background: #0b5ed7; }
 
     
     .page-header {
@@ -124,7 +147,7 @@
       line-height: 1.8;
     }
 
-   
+    
     .models-section {
       padding: 3rem 2rem 5rem;
       max-width: 1300px;
@@ -216,61 +239,55 @@
       margin-top: auto;
     }
 
-   
+    
+    .model-card.search-highlight {
+      outline: 2px solid var(--gold);
+      outline-offset: -2px;
+    }
+    .model-card.search-dim { opacity: 0.2; transition: opacity 0.3s; }
+    .search-highlight .model-name mark {
+      background: var(--gold); color: #000;
+      border-radius: 2px; padding: 0 2px;
+    }
+    .search-highlight .model-desc mark {
+      background: rgba(201,168,76,0.35); color: #fff; border-radius: 2px;
+    }
+    #no-results {
+      display: none; text-align: center; padding: 3rem 1rem;
+      color: var(--muted); font-size: 1rem; grid-column: 1 / -1;
+    }
+
+    
     @media (max-width: 900px) {
       .models-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 560px) {
       .models-grid { grid-template-columns: 1fr; }
-      nav { flex-wrap: wrap; gap: 0.5rem; padding: 0.8rem 1rem; }
-      .nav-links { flex-wrap: wrap; }
+      nav { height: auto; flex-wrap: wrap; gap: 0.4rem; padding: 0.6rem 1rem; }
+      .nav-links { flex-wrap: wrap; gap: 0; }
+      .nav-search { width: 100%; }
+      .nav-search input { flex: 1; width: auto; }
     }
   </style>
 </head>
 <body>
 
   
-  <nav class="navbar navbar-expand-sm navbar-dark bg-black sticky-top">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Lamborghini</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                        <div class="collapse navbar-collapse" id="mynavbar">
-                          <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                              <a class="nav-link" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
-                                  <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="NewModels.html">New Models</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="OldModels.html">Old Models</a>
-                                    </li>
-                                  </ul>
-                            </li>
-                             
-                              <li class="nav-item">
-                              <a class="nav-link" href="Heritage.html">Heritage</a>
-                            </li>
-                               
-                              <li class="nav-item">
-                              <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                          </ul>
-                         
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="text" placeholder="Search">
-                            <button class="btn btn-primary" type="button">Search</button>
-                        </form>
-                        </div>
-              </div>
-    </nav>
+  <nav>
+    <a class="nav-brand" href="#">Lamborghini</a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Models <span class="caret">▾</span></a></li>
+      <li><a href="#">Heritage</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-search">
+      <input type="text" placeholder="Search" />
+      <button type="button">Search</button>
+    </div>
+  </nav>
 
-
+  
   <header class="page-header">
     <h1>Current Models</h1>
     <p>
@@ -284,10 +301,11 @@
   <section class="models-section">
     <div class="models-grid">
 
-     
+      
       <div class="model-card">
         <div class="model-img-wrap">
-          <img src="huracan.jpg" alt="huracan">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Lamborghini_Huracan_EVO_-_Flickr_-_Alexandre_Prévot_%2816%29_%28cropped%29.jpg/1280px-Lamborghini_Huracan_EVO_-_Flickr_-_Alexandre_Prévot_%2816%29_%28cropped%29.jpg"
+               alt="Lamborghini Huracán" onerror="this.style.display='none'"/>
         </div>
         <div class="model-body">
           <div class="model-name">Huracán</div>
@@ -302,10 +320,11 @@
         </div>
       </div>
 
-     
+      
       <div class="model-card">
         <div class="model-img-wrap">
-          <img src="temerario.jpg" alt="Lamborghini Temerario">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Lamborghini_Temerario_IAA_2024_1X7A2941.jpg/1280px-Lamborghini_Temerario_IAA_2024_1X7A2941.jpg"
+               alt="Lamborghini Temerario" onerror="this.style.display='none'"/>
         </div>
         <div class="model-body">
           <div class="model-name">Temerario</div>
@@ -319,9 +338,11 @@
         </div>
       </div>
 
+      
       <div class="model-card">
         <div class="model-img-wrap">
-          <img src="urus.jpg" alt="Lamborghini Urus" >
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lamborghini_Urus_IAA_2021_1X7A0114.jpg/1280px-Lamborghini_Urus_IAA_2021_1X7A0114.jpg"
+               alt="Lamborghini Urus" onerror="this.style.display='none'"/>
         </div>
         <div class="model-body">
           <div class="model-name">Urus</div>
@@ -338,7 +359,8 @@
       
       <div class="model-card">
         <div class="model-img-wrap">
-          <img src="revuelto.jpg" alt="Lamborghini Revuelto">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/2023_Lamborghini_Revuelto_at_the_Paris_Motor_Show.jpg/1280px-2023_Lamborghini_Revuelto_at_the_Paris_Motor_Show.jpg"
+               alt="Lamborghini Revuelto" onerror="this.style.display='none'"/>
         </div>
         <div class="model-body">
           <div class="model-name">Revuelto</div>
@@ -352,8 +374,87 @@
         </div>
       </div>
 
+      <div id="no-results">No models found matching "<span id="no-results-term"></span>".</div>
     </div>
   </section>
+
+  <script>
+    const searchInput = document.querySelector('.nav-search input');
+    const searchBtn   = document.querySelector('.nav-search button');
+    const cards       = document.querySelectorAll('.model-card');
+    const noResults   = document.getElementById('no-results');
+    const noResultsTerm = document.getElementById('no-results-term');
+
+    function highlight(text, query) {
+      if (!query) return text;
+      const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+    }
+
+    function doSearch() {
+      const query = searchInput.value.trim();
+
+      
+      cards.forEach(card => {
+        const nameEl = card.querySelector('.model-name');
+        const descEl = card.querySelector('.model-desc');
+        nameEl.innerHTML = nameEl.dataset.original || nameEl.textContent;
+        descEl.innerHTML = descEl.dataset.original || descEl.textContent;
+        
+        if (!nameEl.dataset.original) nameEl.dataset.original = nameEl.textContent;
+        if (!descEl.dataset.original)  descEl.dataset.original  = descEl.textContent;
+        card.classList.remove('search-highlight', 'search-dim');
+      });
+
+      if (!query) { noResults.style.display = 'none'; return; }
+
+      const q = query.toLowerCase();
+      let matchCount = 0;
+
+      cards.forEach(card => {
+        const nameEl = card.querySelector('.model-name');
+        const descEl = card.querySelector('.model-desc');
+        const text   = (nameEl.dataset.original + ' ' + descEl.dataset.original).toLowerCase();
+
+        if (text.includes(q)) {
+          matchCount++;
+          card.classList.add('search-highlight');
+          nameEl.innerHTML = highlight(nameEl.dataset.original, query);
+          descEl.innerHTML = highlight(descEl.dataset.original, query);
+
+          
+          if (matchCount === 1) {
+            setTimeout(() => {
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 50);
+          }
+        } else {
+          card.classList.add('search-dim');
+        }
+      });
+
+      
+      if (matchCount === 0) {
+        noResultsTerm.textContent = query;
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    
+    searchBtn.addEventListener('click', doSearch);
+
+    
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value === '') doSearch();
+    });
+  </script>
 
 </body>
 </html>
