@@ -1,55 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device=width, initial-scale=1.0">
-        <title>Lamborghini</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body class="bg-black text-white">
-       <nav class="navbar navbar-expand-sm navbar-dark bg-black sticky-top">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Lamborghini</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                        <div class="collapse navbar-collapse" id="mynavbar">
-                          <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                              <a class="nav-link" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Models</a>
-                                  <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="NewModels.html">New Models</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="OldModels.html">Old Models</a>
-                                    </li>
-                                  </ul>
-                            </li>
-                             
-                              <li class="nav-item">
-                              <a class="nav-link" href="Heritage.html">Heritage</a>
-                            </li>
-                               
-                              <li class="nav-item">
-                              <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                          </ul>
-                         
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="text" placeholder="Search">
-                            <button class="btn btn-primary" type="button">Search</button>
-                        </form>
-                        </div>
-              </div>
-    </nav>
-         <footer style="background-color:black;">
-		<p>&copy; 2026 Lamborghini</p>
-	</footer>
-    </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lamborghini – Current Models</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-dim: #a07830;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #222;
+      --text: #e8e0d0;
+      --muted: #888;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    
+    nav {
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      background: #000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 52px;
+    }
+
+    .nav-brand {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      flex: 1;
+      align-items: center;
+      gap: 0.1rem;
+    }
+
+    .nav-links li a {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.75rem;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links li a:hover { color: #fff; }
+
+    .nav-links li a .caret {
+      font-size: 0.65rem;
+      opacity: 0.7;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #fff;
+      color: #000;
+      min-width: 160px;
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      z-index: 200;
+      overflow: hidden;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.65rem 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #111 !important;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f0f0f0;
+      color: #000 !important;
+    }
+
+    .nav-links li.open .dropdown-menu {
+      display: block;
+    }
+
+    
+    .nav-search {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-left: auto;
+    }
+
+    .nav-search input {
+      background: #fff;
+      border: none;
+      color: #333;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      width: 200px;
+      padding: 0.42rem 0.9rem;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .nav-search input::placeholder { color: #aaa; }
+
+    .nav-search button {
+      background: #0d6efd;
+      border: none;
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.42rem 1rem;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-search button:hover { background: #0b5ed7; }
+
+    
+    .page-header {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 1.5rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.2em;
+      color: #fff;
+    }
+
+    .page-header p {
+      max-width: 780px;
+      margin: 1.2rem auto 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    
+    .models-section {
+      padding: 3rem 2rem 5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .model-card {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .model-card:hover { z-index: 2; transform: scale(1.015); }
+
+    .model-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid var(--gold);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .model-card:hover::after { opacity: 1; }
+
+    .model-img-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+
+    .model-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.9) contrast(1.05);
+      transition: filter 0.4s, transform 0.5s;
+    }
+
+    .model-card:hover .model-img-wrap img {
+      filter: brightness(1) contrast(1.1);
+      transform: scale(1.04);
+    }
+
+    .model-body {
+      padding: 1.4rem 1.2rem 1.6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .model-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .model-desc {
+      font-size: 0.82rem;
+      color: #aaa;
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .model-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: #fff;
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+      margin-top: auto;
+    }
+
+    
+    .model-card.search-highlight {
+      outline: 2px solid var(--gold);
+      outline-offset: -2px;
+    }
+    .model-card.search-dim { opacity: 0.2; transition: opacity 0.3s; }
+    .search-highlight .model-name mark {
+      background: var(--gold); color: #000;
+      border-radius: 2px; padding: 0 2px;
+    }
+    .search-highlight .model-desc mark {
+      background: rgba(201,168,76,0.35); color: #fff; border-radius: 2px;
+    }
+    #no-results {
+      display: none; text-align: center; padding: 3rem 1rem;
+      color: var(--muted); font-size: 1rem; grid-column: 1 / -1;
+    }
+
+    
+    @media (max-width: 900px) {
+      .models-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .models-grid { grid-template-columns: 1fr; }
+      nav { height: auto; flex-wrap: wrap; gap: 0.4rem; padding: 0.6rem 1rem; }
+      .nav-links { flex-wrap: wrap; gap: 0; }
+      .nav-search { width: 100%; }
+      .nav-search input { flex: 1; width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <nav>
+    <a class="nav-brand" href="index.html">Lamborghini</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li id="models-dropdown-li">
+        <a href="#" id="models-toggle">Models <span class="caret">▾</span></a>
+        <div class="dropdown-menu">
+          <a href="NewModels.html">New Models</a>
+          <a href="OldModels.html">Old Models</a>
+        </div>
+      </li>
+      <li><a href="Heritage.html">Heritage</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-search">
+      <input type="text" placeholder="Search" />
+      <button type="button">Search</button>
+    </div>
+  </nav>
+
+  
+  <header class="page-header">
+    <h1>Current Models</h1>
+    <p>
+      Here you will get to witness all the current models in all their greatness and glory.
+      With the current models get to see the advanced technology, the luxurious advancements.
+      Whether you are looking for raw power or comfort, it is all available throughout every model.
+    </p>
+  </header>
+
+  
+  <section class="models-section">
+    <div class="models-grid">
+
+      
+      <div class="model-card">
+        <div class="model-img-wrap">
+          <img src="huracan.jpg" alt="Huracan">
+        </div>
+        <div class="model-body">
+          <div class="model-name">Huracán</div>
+          <p class="model-desc">
+            The Huracán is designed for raw power and to turn heads of every spectator.
+            Packed under the hood is a 5.2-litre naturally aspirated V10 engine giving you a
+            whopping 572–640 horsepower. This beast goes 0–100 km/h in 2.9 seconds with a top
+            speed of 320–325 km/h. It also features dynamic steering, magnetorheological
+            suspension and an adaptive network intelligent management system.
+          </p>
+          <div class="model-price">From P4,300,000 – P8,300,000</div>
+        </div>
+      </div>
+
+      
+      <div class="model-card">
+        <div class="model-img-wrap">
+          <img src="temerario.jpg" alt="Temerario">
+        </div>
+        <div class="model-body">
+          <div class="model-name">Temerario</div>
+          <p class="model-desc">
+            Redesigned with a new look while retaining the same powerful performance. The
+            Temerario rocks a mid-mounted V8 engine with forced induction via twin turbos,
+            revving up to 10,000 RPM — a first for a production engine. Being a hybrid, three
+            electric motors contribute to a combined 907 horsepower.
+          </p>
+          <div class="model-price">Approx. P5,900,000</div>
+        </div>
+      </div>
+
+      
+      <div class="model-card">
+        <div class="model-img-wrap">
+          <img src="urus.jpg" alt="Urus">
+        </div>
+        <div class="model-body">
+          <div class="model-name">Urus</div>
+          <p class="model-desc">
+            The Urus brings the SUV form factor to Lamborghini's DNA. A 4.0-litre twin-turbo
+            V8 engine pushes up to 641 horsepower, launching the SUV from 0–100 km/h in under
+            4 seconds. Also available in hybrid form, with electric motors driving the wheels
+            for added efficiency without sacrificing performance.
+          </p>
+          <div class="model-price">From P3,300,000</div>
+        </div>
+      </div>
+
+      
+      <div class="model-card">
+        <div class="model-img-wrap">
+          <img src="revuelto.jpg" alt="Revuelto">
+        </div>
+        <div class="model-body">
+          <div class="model-name">Revuelto</div>
+          <p class="model-desc">
+            The most prestigious current model in the Lamborghini lineup. A 6.5-litre V12
+            engine spins to 9,300 RPM, pushing a hefty 814 hp — combined with three electric
+            motors (one per front wheel, one in the 8-speed dual-clutch transaxle) for 147 HP
+            more, totalling 1,001 HP. Batteries charge via regenerative braking or plug-in.
+          </p>
+          <div class="model-price">P107,200,000</div>
+        </div>
+      </div>
+
+      <div id="no-results">No models found matching "<span id="no-results-term"></span>".</div>
+    </div>
+  </section>
+
+  <script>
+    const modelsLi = document.getElementById('models-dropdown-li');
+    const modelsToggle = document.getElementById('models-toggle');
+
+    modelsToggle.addEventListener('click', e => {
+      e.preventDefault();
+      modelsLi.classList.toggle('open');
+    });
+
+    document.addEventListener('click', e => {
+      if (!modelsLi.contains(e.target)) {
+        modelsLi.classList.remove('open');
+      }
+    });
+
+    const searchInput = document.querySelector('.nav-search input');
+    const searchBtn   = document.querySelector('.nav-search button');
+    const cards       = document.querySelectorAll('.model-card');
+    const noResults   = document.getElementById('no-results');
+    const noResultsTerm = document.getElementById('no-results-term');
+
+    function highlight(text, query) {
+      if (!query) return text;
+      const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+    }
+
+    function doSearch() {
+      const query = searchInput.value.trim();
+
+      
+      cards.forEach(card => {
+        const nameEl = card.querySelector('.model-name');
+        const descEl = card.querySelector('.model-desc');
+        nameEl.innerHTML = nameEl.dataset.original || nameEl.textContent;
+        descEl.innerHTML = descEl.dataset.original || descEl.textContent;
+        
+        if (!nameEl.dataset.original) nameEl.dataset.original = nameEl.textContent;
+        if (!descEl.dataset.original)  descEl.dataset.original  = descEl.textContent;
+        card.classList.remove('search-highlight', 'search-dim');
+      });
+
+      if (!query) { noResults.style.display = 'none'; return; }
+
+      const q = query.toLowerCase();
+      let matchCount = 0;
+
+      cards.forEach(card => {
+        const nameEl = card.querySelector('.model-name');
+        const descEl = card.querySelector('.model-desc');
+        const text   = (nameEl.dataset.original + ' ' + descEl.dataset.original).toLowerCase();
+
+        if (text.includes(q)) {
+          matchCount++;
+          card.classList.add('search-highlight');
+          nameEl.innerHTML = highlight(nameEl.dataset.original, query);
+          descEl.innerHTML = highlight(descEl.dataset.original, query);
+
+          
+          if (matchCount === 1) {
+            setTimeout(() => {
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 50);
+          }
+        } else {
+          card.classList.add('search-dim');
+        }
+      });
+
+      
+      if (matchCount === 0) {
+        noResultsTerm.textContent = query;
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    
+    searchBtn.addEventListener('click', doSearch);
+
+    
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value === '') doSearch();
+    });
+  </script>
+</body>
 </html>
