@@ -36,6 +36,7 @@
   <section class="heritage-section">
     <div class="year-label" id="year-label">Year 1960s</div>
 
+    <!--holds images with twoo arrow buttons on either side-->
     <div class="slideshow-wrap">
       <button class="nav-arrow prev" id="btn-prev">
         <span class="arrow-icon">&#8249;</span>
@@ -51,7 +52,7 @@
         <span>Next</span>
       </button>
     </div>
-
+   <!--gives dots to slide through images-->
     <div class="year-dots" id="year-dots"></div>
 
     <div class="slide-desc">
@@ -153,6 +154,7 @@
     function doSearch() {
       const query = searchInput.value.trim().toLowerCase();
       if (!query) return;
+      //searches through array 
       const idx = slides.findIndex(s =>
         s.title.toLowerCase().includes(query) ||
         s.text.toLowerCase().includes(query) ||
