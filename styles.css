@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&display=swap');
-
+/*color palette for every page*/
 :root {
   --gold: #c9a84c;
   --gold-dim: #a07830;
@@ -10,6 +10,7 @@
   --muted: #888;
 }
 
+/*resets every element*/
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -20,7 +21,7 @@ body {
   line-height: 1.6;
 }
 
-/* ─── NAV ─── */
+/* nav */
 nav {
   display: flex;
   align-items: center;
@@ -32,6 +33,7 @@ nav {
   height: 52px;
 }
 
+/*styles lamborghini text */
 .nav-brand {
   font-family: 'Barlow', sans-serif;
   font-weight: 600;
@@ -52,7 +54,7 @@ nav {
 }
 
 .nav-links li { position: relative; }
-
+/*style nav links grey*/
 .nav-links li a {
   display: flex;
   align-items: center;
@@ -67,8 +69,9 @@ nav {
   white-space: nowrap;
 }
 
+/*turns link white*/
 .nav-links li a:hover { color: #fff; }
-
+/*makes arrow*/
 .nav-links li a .caret { font-size: 0.65rem; opacity: 0.7; }
 
 .dropdown-menu {
@@ -154,7 +157,7 @@ footer {
   padding: 4rem 2rem 2rem;
   position: relative;
 }
-
+/*creates gold bar*/
 .page-header::before {
   content: '';
   display: block;
@@ -179,7 +182,7 @@ footer {
   line-height: 1.8;
 }
 
-/* ─── INDEX PAGE ─── */
+/* index */
 .hero {
   width: 100%;
   overflow: hidden;
@@ -198,6 +201,7 @@ footer {
   padding: 5rem 2rem;
   max-width: 1100px;
   margin: 0 auto;
+  /*creates two equal columns*/
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
@@ -212,7 +216,7 @@ footer {
   margin-bottom: 1.2rem;
   line-height: 1.2;
 }
-
+/*targets only span in header*/
 .about-text h2 span { color: var(--gold); }
 
 .about-text p {
@@ -244,7 +248,7 @@ footer {
   margin: 1rem auto;
 }
 
-/* ─── MODELS PAGES (New & Old) ─── */
+/* model pages*/
 .models-section {
   padding: 3rem 2rem 5rem;
   max-width: 1300px;
@@ -378,7 +382,7 @@ mark {
   grid-column: 1 / -1;
 }
 
-/* ─── HERITAGE PAGE ─── */
+/* heritage*/
 .heritage-section {
   max-width: 900px;
   margin: 0 auto;
