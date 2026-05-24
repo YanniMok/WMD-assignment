@@ -28,14 +28,20 @@
       <button type="button">Search</button>
     </div>
   </nav>
+  
+  <!-- If user searches for something that does not exist displays no results found with the word searched -->
 
   <div id="search-no-results" class="search-no-results">
     No results found for "<span id="search-term"></span>".
   </div>
 
+  <!-- Hero section with lambo spreading across page with id section hero if need to be called -->
+
   <section class="hero" id="section-hero">
     <img src="Lambo.jpg" alt="Lamborghini car">
   </section>
+
+  <!-- Rwo column grid with left side being text and right sside being video -->
 
   <section class="about-section" id="section-about">
     <div class="about-text" id="about-text-block">
@@ -45,6 +51,7 @@
       <p>But appreciated by many.</p>
     </div>
     <div class="about-video">
+      <!-- Makes video play automatically, muted, looping and not fullscreen on mobile device -->
       <video autoplay muted loop playsinline>
         <source src="lambVid.mp4" type="video/mp4">
       </video>
@@ -55,19 +62,24 @@
     <p>&copy; 2026 Lamborghini</p>
   </footer>
 
+
   <script>
+    //Allows for dropdown list items to be grabbed using their id
     const modelsLi = document.getElementById('models-dropdown-li');
     const modelsToggle = document.getElementById('models-toggle');
 
+    //Toggles open on the list item and stops from navigating anywhere
     modelsToggle.addEventListener('click', e => {
       e.preventDefault();
       modelsLi.classList.toggle('open');
     });
 
+    //click anywhere outside of the list closes it
     document.addEventListener('click', e => {
       if (!modelsLi.contains(e.target)) modelsLi.classList.remove('open');
     });
 
+    
     const searchInput = document.querySelector('.nav-search input');
     const searchBtn = document.querySelector('.nav-search button');
     const noResultsBox = document.getElementById('search-no-results');
@@ -77,8 +89,10 @@
       { el: document.getElementById('about-text-block'), label: 'About' }
     ];
 
+    // Wraps matched words in <mark> tags so they appear highlighted
     function highlight(text, query) {
       if (!query) return text;
+      //makes sure special characters dont break search
       const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
     }
@@ -86,6 +100,7 @@
     function doSearch() {
       const query = searchInput.value.trim();
 
+       // Reset all sections back to normal before each new search
       searchTargets.forEach(t => {
         if (!t.original) t.original = t.el.innerHTML;
         t.el.innerHTML = t.original;
